@@ -1,59 +1,53 @@
-<h1 align="center"> AI-CHATKIT </h1>
-<p align="center">
-  <strong style="background-color: green;">English</strong>
-  |
-  <a href="./README_zh.md" target="_Self">中文</a>
-</p>
-AI-CHATKIT is a full-stack AI agent chat tool built using components such as langGraph, FastAPI, NextJS, and Chroma.
+<h1 align="center"> Orbit Chat </h1>
+<p align="center"> <strong style="background-color: green;">English</strong> | <a href="./README_zh.md" target="_Self">中文</a> </p>
 
-This project serves as a template to help you quickly build related AI agent chat applications using the langGraph framework, and supports RAG (Retrieval-Augmented Generation) to enhance the knowledge base Q&A capabilities of agents.
+Orbit Chat is a full-stack AI agent chat platform built using LangGraph, FastAPI, NextJS, and Chroma.
+It serves as a template for rapidly building AI-agent chat applications powered by the LangGraph framework, with full RAG (Retrieval-Augmented Generation) support to enhance knowledge-base Q&A for agents.
 
-<img src="./pictures/chat_img.png" width="700"/>  
-
-multi-agent:
-
+<img src="./pictures/chat_img.png" width="700"/>
+Multi-Agent Demo
 <img src="./pictures/chat_multi_agent_img.png" width="700"/>
+🚀 Features
 
+AI agent chat application built on the LangGraph framework with customizable agent behavior and orchestration.
 
-## Features
+Supports custom knowledge-base Q&A using ChromaDB for embedding storage and retrieval.
 
-1. AI agent chat application built on the langGraph framework, supporting custom behavior logic orchestration for agents.
-2. Supports custom knowledge base Q&A capabilities for agents, using ChromaDB for knowledge base storage and querying.
-3. Supports custom tool invocation for agents.
-4. Python backend interface API, implemented based on FastAPI, Support full asynchronous calls.
-5. Supports custom frontend applications for agents, implemented using NextJS.
-6. Supports chat streaming output, with frontend support for SSE (Server-Sent Events) streaming.
-7. Supports multiple custom agents
-8. Support multi-agent collaboration
-9. Chat history is saved in the local browser cache
+Built-in support for custom tool invocation for agents.
 
+Python backend using FastAPI, fully asynchronous.
 
+Customizable NextJS frontend for agent chat UI.
 
-## Structure
+Streaming chat output using SSE (Server-Sent Events).
 
-- `backend`: Backend service code
-- `frontend`: Frontend service code
+Create and switch between multiple agents.
 
-## Quick Start
+Multi-agent collaboration supported (math, code, general assistant, etc.).
 
-### Backend Service
+Chat history stored locally in the browser.
 
+📁 Project Structure
+backend   → Backend service code
+frontend  → Frontend service code
 
-Backend .env file configuration
-Rename .env.example to .env
+⚡ Quick Start
+🟦 Backend Setup
 
-```properties
+Rename .env.example to .env and configure:
+
 # Environment variable configuration
 
 # Database configuration
 # SQLite URL
 DATABASE_URL=sqlite+aiosqlite:///resource/database.db
+
 # MySQL
 # DATABASE_URL=mysql+aiomysql://root:root@localhost/ai-chatkit
 
 # Application configuration
 DEBUG=True
-APP_NAME=AI ChatKit
+APP_NAME=Orbit Chat
 
 # OpenAI
 OPENAI_BASE_URL=
@@ -61,69 +55,81 @@ OPENAI_API_KEY=
 DEFAULT_MODEL=gpt-4o-mini
 
 # DashScope
-#DASHSCOPE_API_KEY=
-#DEFAULT_MODEL=qwen-plus
+# DASHSCOPE_API_KEY=
+# DEFAULT_MODEL=qwen-plus
 
-#DeepSeek
-#DEEPSEEK_API_KEY=
-#DEFAULT_MODEL=deepseek-chat
+# DeepSeek
+# DEEPSEEK_API_KEY=
+# DEFAULT_MODEL=deepseek-chat
 
-
-
-# Use bge-m3 as the embedding model, supporting both Chinese and English; requires local deployment of the bge-m3 model via Ollama
+# Embeddings
+# Using bge-m3 via local Ollama for embeddings (supports Chinese + English)
 EMBEDDING_MODEL=bge-m3
 
-# Relative storage path for ChromaDB
+# ChromaDB storage path
 CHROMA_PATH=resource/chroma_db
-```
-run backend server:
-```sh
-# Use the uv tool to manage Python dependencies
+
+
+Run backend:
+
+# Install UV dependency manager
 pip install uv
 
-# Replace ${workdir} with your own working directory
+# Replace ${workdir} with your directory
 cd ${workdir}/backend
 
 uv sync --frozen
-# activate a Python virtual environment.
+
+# Activate virtual environment
 source .venv/bin/activate
+# On Windows:
+# .venv/Scripts/activate
 
-# activate the environment variables on windows
-# .venv/Script/active
-
-#run server
+# Run backend server
 python app/run_server.py
-```
 
-### RAG Deployment
+📚 RAG Deployment
 
-This project by default accesses the locally deployed bge-m3 model via Ollama. Therefore, to access the knowledge base locally, you need to deploy Ollama locally. For local Ollama deployment of bge-m3, please refer to: https://ollama.com/library/bge-m3
+Orbit Chat uses the bge-m3 embedding model through local Ollama.
 
+To enable knowledge-base access, deploy bge-m3 using Ollama:
 
-### Frontend Application
+👉 https://ollama.com/library/bge-m3
 
-```sh
-# Replace ${workdir} with your own working directory
+🟦 Frontend Setup
 cd ${workdir}/frontend
-# Use pnpm to manage dependencies
+
+# Install dependencies
 pnpm install
-# Start the frontend application
+
+# Run development server
 pnpm dev
-```
 
-After successful startup, you can access the application at: http://localhost:3000/
 
-You can use the langGraph extension in this project to create and orchestrate multiple agents, each with its own behavioral logic. The orchestration logic for agents can be written in the `backend/app/ai/agent` directory. You can switch between different agents for conversation in the frontend.
+After startup, visit:
 
-This project comes with the following agents:
+👉 http://localhost:3000/
 
-1. **OA-ASSISTANT**: Mainly used to demonstrate the OA assistant agent, supporting employee information query and employee handbook knowledge base retrieval.
-   For details, please refer to: `backend/app/ai/agent/oa_assistant.py`
+🤖 Built-In Agents
 
-2. **MULTI_AGENT**: Mainly used to demonstrate multi-agent collaboration, supporting collaboration between multiple agents. The multi_agent includes three agents:
-   1) `math_agent`: Mathematical agent, mainly used for mathematical calculations
-   2) `code_agent`: Code agent, mainly used for code generation
-   3) `general_agent`: General agent, mainly used for handling general questions
-   These three agents are collaboratively managed through a supervisor.
+Orbit Chat includes sample agents to demonstrate the LangGraph workflow.
 
-   For details, please refer to: `backend/app/ai/agent/multi_agent.py`
+1. OA-ASSISTANT
+
+Shows an office-assistant style agent
+
+Supports: Employee info lookup, employee handbook knowledge-base queries
+
+Code: backend/app/ai/agent/oa_assistant.py
+
+2. MULTI_AGENT
+
+Demonstrates multi-agent collaboration with a supervisor managing:
+
+math_agent → Mathematical calculations
+
+code_agent → Code generation
+
+general_agent → General Q&A
+
+Code: backend/app/ai/agent/multi_agent.py
