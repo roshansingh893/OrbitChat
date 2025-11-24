@@ -1,5 +1,5 @@
 <h1 align="center"> Orbit Chat </h1>
-<p align="center"> <strong style="background-color: green;">English</strong> | <a href="./README_zh.md" target="_Self">中文</a> </p>
+<p align="center"> <strong style="background-color: green;">English</strong></p>
 
 Orbit Chat is a full-stack AI agent chat platform built using LangGraph, FastAPI, NextJS, and Chroma.
 It serves as a template for rapidly building AI-agent chat applications powered by the LangGraph framework, with full RAG (Retrieval-Augmented Generation) support to enhance knowledge-base Q&A for agents.
