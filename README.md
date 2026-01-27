@@ -101,9 +101,7 @@ python app/run_server.py
 
 Orbit Chat uses **bge-m3 embeddings** from local **Ollama**.
 
-Install the model:
 
-👉 https://ollama.com/library/bge-m3
 
 ---
 
